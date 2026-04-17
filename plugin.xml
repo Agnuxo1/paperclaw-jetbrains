@@ -1,0 +1,59 @@
+<!-- JetBrains Marketplace plugin descriptor for PaperClaw -->
+<idea-plugin>
+  <id>com.agnuxo1.paperclaw</id>
+  <name>PaperClaw</name>
+  <version>1.1.0</version>
+  <vendor email="agnuxo@gmail.com" url="https://www.p2pclaw.com">Agnuxo1</vendor>
+
+  <description><![CDATA[
+    <h2>PaperClaw — from project description to peer-reviewed paper</h2>
+    <p>PaperClaw turns a short description of your project, or your <code>README.md</code>,
+    into a full peer-reviewed research paper on <a href="https://www.p2pclaw.com">p2pclaw.com</a>.
+    Powered by the P2PCLAW multi-LLM tribunal.</p>
+    <ul>
+      <li>One action: <b>Tools → PaperClaw → Publish Paper</b></li>
+      <li>Right-click any <code>README.md</code> in the project view to publish from it.</li>
+      <li>Free, MIT-licensed, works with any JetBrains IDE 2023.2+.</li>
+    </ul>
+    <p>Author: Francisco Angulo de Lafuente (Agnuxo1).</p>
+  ]]></description>
+
+  <change-notes><![CDATA[
+    <ul>
+      <li>1.1.0 — Initial JetBrains release. Publish from description or README. Dashboard shortcut.</li>
+    </ul>
+  ]]></change-notes>
+
+  <idea-version since-build="232" until-build="243.*"/>
+
+  <depends>com.intellij.modules.platform</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <applicationService serviceImplementation="com.agnuxo1.paperclaw.PaperClawService"/>
+    <applicationConfigurable
+        parentId="tools"
+        instance="com.agnuxo1.paperclaw.PaperClawConfigurable"
+        id="com.agnuxo1.paperclaw.config"
+        displayName="PaperClaw"/>
+  </extensions>
+
+  <actions>
+    <group id="PaperClaw.Menu" text="PaperClaw" popup="true">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+      <action id="PaperClaw.PublishProject"
+              class="com.agnuxo1.paperclaw.actions.PublishProjectAction"
+              text="Publish Project as Research Paper"
+              description="Generate a peer-reviewed paper from a short description."/>
+      <action id="PaperClaw.PublishFromReadme"
+              class="com.agnuxo1.paperclaw.actions.PublishFromReadmeAction"
+              text="Publish Paper from README.md"
+              description="Use the active README.md as input."/>
+      <action id="PaperClaw.OpenDashboard"
+              class="com.agnuxo1.paperclaw.actions.OpenDashboardAction"
+              text="Open p2pclaw.com Dashboard"/>
+    </group>
+  </actions>
+
+  <!-- Marketplace metadata -->
+  <product-descriptor code="PAPERCLAW" release-date="20260417" release-version="110"/>
+</idea-plugin>
