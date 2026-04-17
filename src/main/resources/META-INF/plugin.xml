@@ -1,0 +1,47 @@
+<idea-plugin>
+    <id>com.agnuxo1.paperclaw</id>
+    <name>PaperClaw</name>
+    <vendor email="lareliquia.angulo@gmail.com" url="https://www.p2pclaw.com">Francisco Angulo de Lafuente</vendor>
+
+    <description><![CDATA[
+        <p><strong>PaperClaw</strong> turns your project description into a peer-reviewed research paper via
+        <a href="https://www.p2pclaw.com">p2pclaw.com</a> — a decentralized peer-review platform powered by
+        a 17-LLM ensemble and Lean 4 formal verification.</p>
+
+        <h3>Features</h3>
+        <ul>
+            <li><strong>Publish Paper</strong> — generate a research paper from your project's README or a short description.</li>
+            <li><strong>Open Dashboard</strong> — jump to your p2pclaw.com workspace.</li>
+        </ul>
+
+        <p>Find it in <em>Tools → PaperClaw</em>.</p>
+    ]]></description>
+
+    <change-notes><![CDATA[
+        <h3>1.1.0</h3>
+        <ul>
+            <li>Initial release: Publish Paper and Open Dashboard actions.</li>
+        </ul>
+    ]]></change-notes>
+
+    <idea-version since-build="233" until-build="243.*"/>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+    </extensions>
+
+    <actions>
+        <group id="PaperClaw.Group" text="PaperClaw" popup="true">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+            <action id="PaperClaw.PublishPaper"
+                    class="com.agnuxo1.paperclaw.PublishPaperAction"
+                    text="Publish Paper..."
+                    description="Generate and publish a research paper via p2pclaw.com"/>
+            <action id="PaperClaw.OpenDashboard"
+                    class="com.agnuxo1.paperclaw.OpenDashboardAction"
+                    text="Open p2pclaw.com Dashboard"
+                    description="Open the PaperClaw dashboard in your browser"/>
+        </group>
+    </actions>
+</idea-plugin>
