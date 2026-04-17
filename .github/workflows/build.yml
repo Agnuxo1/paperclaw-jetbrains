@@ -1,12 +1,11 @@
 name: Build plugin
-
 on:
   push:
     branches: [main]
   pull_request:
   release:
     types: [created]
-
+  workflow_dispatch:
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,8 +18,10 @@ jobs:
           distribution: 'temurin'
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
+      - name: Generate Gradle wrapper
+        run: gradle wrapper --gradle-version 8.7
       - name: Build plugin
-        run: ./gradlew buildPlugin --no-daemon
+        run: ./gradlew buildPlugin --no-daemon --stacktrace
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
